@@ -136,3 +136,13 @@ services:
       - "api_authz.rego"
     volumes:
       - ./policy/api_authz.rego:/api_authz.rego
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    volumes: 
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports: 
+      - 9091:9090

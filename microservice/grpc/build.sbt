@@ -51,8 +51,11 @@ val protocol = project
   )
 
 val server = project
+  .enablePlugins(UniversalPlugin, JavaAppPackaging)
   .settings(
     name := "grpc-rpc-server",
+
+    dockerExposedPorts := Seq(9090),
 
     libraryDependencies ++= Seq(
       // Needed to build a gRPC server

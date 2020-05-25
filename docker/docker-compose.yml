@@ -143,7 +143,6 @@ services:
     restart: always
     volumes: 
       - ./data/prometheus/config:/etc/prometheus/
-      - ./data/prometheus/data:/prometheus
     command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
     ports: 
       - 9091:9090
@@ -156,5 +155,7 @@ services:
     depends_on:
       - prometheus
     environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=kong
+      - GF_SECURITY_ADMIN_PASSWORD=kong
+    volumes:
+      - ./data/grafana/:/etc/grafana/provisioning

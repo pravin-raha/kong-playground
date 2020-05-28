@@ -10,8 +10,11 @@ import org.http4s.dsl.Http4sDsl
 import org.http4s.server.Router
 import org.http4s.util.CaseInsensitiveString
 import org.http4s.{ EntityDecoder, EntityEncoder, HttpRoutes }
+import pdi.jwt.{ JwtCirce, JwtOptions }
 
-case class User(id: String, username: String, name: String)
+import scala.util.{ Failure, Success }
+
+case class User(id: Option[String], username: Option[String], name: Option[String], email: Option[String])
 
 class UserRoutes[F[_]: Sync] extends Http4sDsl[F] {
 
@@ -21,7 +24,7 @@ class UserRoutes[F[_]: Sync] extends Http4sDsl[F] {
   private val prefixPath = "/user"
 
   private val userRoutes = HttpRoutes.of[F] {
-    case req @ GET -> Root =>
+    case req @ GET -> Root             =>
       req.headers
         .get(CaseInsensitiveString("X-Userinfo"))
         .map(_.value)
@@ -33,6 +36,22 @@ class UserRoutes[F[_]: Sync] extends Http4sDsl[F] {
         }
         .map(user => Ok(user.asJson))
         .getOrElse(NotFound("User info not found"))
+
+    case req @ GET -> Root / "headers" => Ok(req.headers.toList.map(header => s"${header.name}:${header.value}").asJson)
+
+    case req @ GET -> Root / "accesstoken" =>
+      req.headers
+        .get(CaseInsensitiveString("X-Access-Token"))
+        .map(_.value)
+        .map(token => JwtCirce.decodeJsonAll(token, JwtOptions(signature = false)))
+        .flatMap {
+          case Success(token)     => Option(token)
+          case Failure(exception) =>
+            println(exception.getLocalizedMessage)
+            None
+        }
+        .map(token => Ok(token))
+        .getOrElse(InternalServerError("Something went wrong"))
 
   }
 

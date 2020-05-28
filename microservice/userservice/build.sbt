@@ -2,6 +2,7 @@ val Http4sVersion  = "0.21.3"
 val CirceVersion   = "0.13.0"
 val Specs2Version  = "4.9.3"
 val LogbackVersion = "1.2.3"
+val JwtVersion     = "3.1.0"
 
 lazy val root = (project in file("."))
   .settings(
@@ -17,7 +18,8 @@ lazy val root = (project in file("."))
       "io.circe"      %% "circe-generic"       % CirceVersion,
       "io.circe"      %% "circe-parser"        % CirceVersion,
       "org.specs2"    %% "specs2-core"         % Specs2Version % "test",
-      "ch.qos.logback" % "logback-classic"     % LogbackVersion
+      "ch.qos.logback" % "logback-classic"     % LogbackVersion,
+      "com.pauldijou" %% "jwt-circe"           % JwtVersion
     ),
     addCompilerPlugin("org.typelevel" %% "kind-projector"     % "0.10.3"),
     addCompilerPlugin("com.olegpy"    %% "better-monadic-for" % "0.3.1")

@@ -10,7 +10,7 @@ object Server extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] = for {
     serviceDef <- Greeter.bindService[IO]
-    server     <- GrpcServer.default[IO](12345, List(AddService(serviceDef)))
+    server     <- GrpcServer.default[IO](9090, List(AddService(serviceDef)))
     _          <- GrpcServer.server[IO](server)
   } yield ExitCode.Success
 

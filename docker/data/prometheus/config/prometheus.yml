@@ -9,4 +9,4 @@ scrape_configs:
     honor_timestamps: true
     sample_limit: 0
     static_configs:
-      - targets: ['host.docker.internal:9090','host.docker.internal:8001']
+      - targets: ['prometheus:9090','kong:8001']

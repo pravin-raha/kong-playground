@@ -3,7 +3,7 @@ package com.raha.pravin.userservice
 import cats.effect.{ ConcurrentEffect, ContextShift, Sync, Timer }
 import cats.implicits._
 import com.raha.pravin.userservice.config.config.AppConfig
-import com.raha.pravin.userservice.user.{ ColorRoute, UserRoutes }
+import com.raha.pravin.userservice.user.{ ColorRoute, HealthCheckRoute, UserRoutes }
 import org.http4s.dsl.Http4sDsl
 import org.http4s.server.middleware._
 import org.http4s.syntax.all._
@@ -17,7 +17,9 @@ class Module[F[_]: Sync: ConcurrentEffect: Timer: ContextShift](applicationConf:
 
   private val colorRoute: HttpRoutes[F] = ColorRoute[F](applicationConf.color).routes
 
-  private val routes = userRoute <+> colorRoute
+  private val healthCheckRoute: HttpRoutes[F] = HealthCheckRoute[F].routes
+
+  private val routes = userRoute <+> colorRoute <+> healthCheckRoute
 
   private val middleware: HttpRoutes[F] => HttpRoutes[F] = {
     { http: HttpRoutes[F] =>

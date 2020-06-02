@@ -61,7 +61,7 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PG_PASSWORD: kong
-      KONG_PLUGINS: 'bundled,oidc-acl,opa,grpc-web'
+      KONG_PLUGINS: 'bundled,oidc-acl,opa,grpc-web,oidc'
     networks:
       - kong-net
     ports:

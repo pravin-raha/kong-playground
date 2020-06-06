@@ -1,5 +1,5 @@
 module.exports = {
   someSidebar: {
-    'Environment Setup': ['getting_started', 'service_list'],
+    'Environment Setup': ['getting_started', 'service_list', 'route_and_service'],
   },
 };

@@ -23,9 +23,9 @@ curl -X POST http://localhost:8001/upstreams  \
 
 ```shell script
 curl -X POST http://localhost:8001/upstreams/user.v1.service/targets \
-    --data "target=userservice_RED:8080"
+    --data "target=userservice_RED:8080" \
     --data "weight=100"
 curl -X POST http://localhost:8001/upstreams/user.v1.service/targets \
-    --data "target=userservice_green:8080"
+    --data "target=userservice_green:8080" \
     --data "weight=50"
 ```

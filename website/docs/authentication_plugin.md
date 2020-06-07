@@ -15,7 +15,7 @@ curl -X POST http://localhost:8001/services/{ID}/plugins \
     --data "config.client_secret=29d98bf7-168c-4874-b8e9-9ba5e7382fa0" \
     --data "config.discovery=http://{ip}:8080/auth/realms/kong/.well-known/openid-configuration" \
     --data "config.introspection_endpoint=http://{ip}:8080/auth/realms/kong/protocol/openid-connect/token/introspect" \
-    --data "config.bearer_only=true"
+    --data "config.bearer_only=yes"
 ```
 
 ## Adding ACL plugin

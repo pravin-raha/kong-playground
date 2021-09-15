@@ -39,7 +39,7 @@ module.exports = {
           items: [
             {
               label: "GitHub Repo",
-              href: "https://pravin-raha.github.io/kong-playground"
+              href: "https://github.com/pravin-raha/kong-playground"
             }
           ]
         }

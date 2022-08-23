@@ -7,6 +7,10 @@ module.exports = {
   organizationName: 'pravin-raha', 
   projectName: 'kong-playground',
   deploymentBranch: "gh-pages",
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
   themeConfig: {
     navbar: {
       title: 'Kong Playground',
@@ -14,10 +18,10 @@ module.exports = {
         alt: 'Kong Playground',
         src: 'img/logo.png',
       },
-      links: [
+      items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          to: 'docs/getting_started',
+          activeBasePath: 'docs/getting_started',
           label: 'Docs',
           position: 'left',
         }
@@ -45,7 +49,6 @@ module.exports = {
           ]
         }
       ],
-      scripts: ['https://buttons.github.io/buttons.js'],
     }
   },
   presets: [
@@ -53,8 +56,6 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'getting_started',
           sidebarPath: require.resolve('./sidebars.js')
         },
         theme: {

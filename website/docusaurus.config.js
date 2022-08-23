@@ -6,6 +6,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'pravin-raha', 
   projectName: 'kong-playground',
+  deploymentBranch: "gh-pages",
   themeConfig: {
     navbar: {
       title: 'Kong Playground',
